@@ -1,53 +1,63 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class IsaacCharacterGeneratorApplication {
-    private String[] postacie;
-    private int[] wagi;
-    private int[] sumaWag;
-    private Random randomResault;
+    private List<Character> characters;
+    private int[] completionPoints;
+    private List<Integer> arrayOfAlternateSums;
+    private int sumOfWeights;
+    private Random randomResult;
 
-
-    public IsaacCharacterGeneratorApplication(int[] wagi, String[] postacie) {
-        {
-
-            this.postacie = postacie;
-            this.wagi = wagi;
-        }
-
+    public IsaacCharacterGeneratorApplication(List<Character> characters, int[] completionPoints) {
+        this.characters = characters;
+        this.completionPoints = completionPoints;
     }
 
     public void initialize() {
-        randomResault = new Random();
+        randomResult = new Random();
 
-        int sumaDoTeraz = 0;
-        sumaWag = new int[wagi.length];
-        for (int i = 0; i < wagi.length; i++) {
-            sumaDoTeraz += wagi[i];
-            sumaWag[i] = sumaDoTeraz;
+        arrayOfAlternateSums = new ArrayList<>();
+        int sumTillNow = 0;
+        for (int i = 0; i < characters.size(); i++) {
+            Character character = characters.get(i);
+            sumTillNow += character.getWeight();
+            sumOfWeights += character.getWeight();
+
+            arrayOfAlternateSums.add(i, sumTillNow);
+
+            Integer alternativeSum = arrayOfAlternateSums.get(i);
+            alternativeSum += completionPoints[i];
+            arrayOfAlternateSums.add(i, alternativeSum);
         }
     }
 
     String getRandomElement() {
-        int losowy = randomResault.nextInt(sumaWag.length - 1);
-        int probka = losowy + 1;
-        int index = Arrays.binarySearch(sumaWag, probka);
+        int random = randomResult.nextInt(sumOfWeights - 1);
+        int sample = random + 1;
+        int index = Arrays.binarySearch(arrayOfAlternateSums, sample);
         if (index < 0) {
             index = -(index + 1);
         }
-        return postacie[index];
+        return characters[index];
     }
 
 
     public static void main(String[] args) {
-        String[] postacie = {"Isaac", "Judas", "Eden", "Lost"};
-        int[] wagi = {0, 1, 1, 5};
-        IsaacCharacterGeneratorApplication generatorPostaci = new IsaacCharacterGeneratorApplication(wagi, postacie);
-        generatorPostaci.initialize();
+        List<Character> characters = List.of(
+                new Character("Isaac", 1),
+                new Character("Judas", 2),
+                new Character("Eden", 3),
+                new Character("Lost", 4),
+                new Character("Eve", 5)
+        );
+        int[] completionPoints = {1, 1, 1, 1, 1};
+        IsaacCharacterGeneratorApplication characterGenerator = new IsaacCharacterGeneratorApplication(characters, completionPoints);
+        characterGenerator.initialize();
         for (int i = 0; i < 5; i++) {
-            String postac = generatorPostaci.getRandomElement();
-            System.out.println(postac);
+            String character = characterGenerator.getRandomElement();
+            System.out.println(character);
         }
 
 

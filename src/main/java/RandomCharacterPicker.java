@@ -12,6 +12,7 @@ public class RandomCharacterPicker {
 
         int randomInt = random.nextInt(issacCharacters.size());
         return issacCharacters.get(randomInt);
+
     }
 
 }
