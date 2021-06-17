@@ -12,7 +12,7 @@ class RandomCharacterPickerTest {
     @Test
     void shouldThrowExceptionWhenEmptyListIsPassed() {
         // GIVEN
-        List<String> noCharacters = Collections.emptyList();
+        List<Character> noCharacters = Collections.emptyList();
 
         // WHEN && THEN
         Assertions.assertThrows(IllegalArgumentException.class, () -> new RandomCharacterPicker().pick(noCharacters));
@@ -21,7 +21,7 @@ class RandomCharacterPickerTest {
     @Test
     void shouldThrowExceptionWhenNullIsPassed() {
         // GIVEN
-        List<String> nullList = null;
+        List<Character> nullList = null;
 
         // WHEN && THEN
         Assertions.assertThrows(IllegalArgumentException.class, () -> new RandomCharacterPicker().pick(nullList));
@@ -31,7 +31,7 @@ class RandomCharacterPickerTest {
     void shouldReturnTheSameCharacterThatIsInList() {
         // GIVEN
         String onlyCharacterInCollection = "Isaac";
-        List<String> singularCharacter = List.of(onlyCharacterInCollection);
+        List<Character> singularCharacter = List.of(new Character(onlyCharacterInCollection));
 
         // WHEN
         String result = new RandomCharacterPicker().pick(singularCharacter);
@@ -44,14 +44,17 @@ class RandomCharacterPickerTest {
     void shouldReturnRandomCharacterForMultipleElementList() {
         // GIVEN
         int randomGenerations = 1000;
-        List<String> characterPool = Arrays.asList("Isaac", "Eden", "Cain");
+        List<Character> characterPool = List.of(
+                new Character("Isaac"),
+                new Character("Eden"),
+                new Character("Cain")
+        );
         int expectedProbability = randomGenerations / characterPool.size();
         RandomCharacterPicker randomCharacterPicker = new RandomCharacterPicker();
         List<String> pickingResults = new ArrayList<>();
-        // WHEN
 
+        // WHEN
         for (int i = 0; i < randomGenerations; i++) {
-            randomCharacterPicker.pick(characterPool);
             pickingResults.add(randomCharacterPicker.pick(characterPool));
         }
 
