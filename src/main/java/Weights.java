@@ -15,7 +15,7 @@ public class Weights {
             this.weights = weights;
         }
 
-
+        System.out.println("Test");
     }
 
     public void calculations() {
