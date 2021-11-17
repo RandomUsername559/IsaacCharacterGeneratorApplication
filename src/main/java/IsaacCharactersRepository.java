@@ -8,7 +8,7 @@ import java.util.List;
 public class IsaacCharactersRepository {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<String> getCharacters() {
+    public List<Character> getCharacters() {
         try {
             return objectMapper.readValue(new File("src/main/resources/characters.json"), new TypeReference<>() {});
         } catch (IOException e) {
