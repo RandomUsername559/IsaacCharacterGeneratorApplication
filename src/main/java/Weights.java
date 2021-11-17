@@ -10,12 +10,9 @@ public class Weights {
 
     public Weights(int[] weights, String[] characters) {
         {
-
             this.characters = characters;
             this.weights = weights;
         }
-
-        System.out.println("Test");
     }
 
     public void calculations() {
@@ -24,8 +21,6 @@ public class Weights {
         int sumTilNow = 0;
         for (int i = 0; i < weights.length; i++) {
             sumTilNow += weights[i];
-            System.out.println(sumTilNow);
-
         }
 
     }
@@ -38,7 +33,7 @@ public class Weights {
         }
         return characters[index];
     }
-
+//to delete later
     public static void main(String[] args) {
         String[] characters = {"Isaac", "Judas", "Eden", "Lost", "Eve"};
         int[] weights = {0, 1, 2, 3, 4};
