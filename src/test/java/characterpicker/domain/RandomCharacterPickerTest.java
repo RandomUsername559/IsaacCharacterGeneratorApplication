@@ -1,3 +1,5 @@
+package characterpicker.domain;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -5,7 +7,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RandomCharacterPickerTest {
     private final RandomCharacterPicker randomCharacterPicker = new RandomCharacterPicker();
@@ -38,7 +40,7 @@ class RandomCharacterPickerTest {
         String result = randomCharacterPicker.pick(singularCharacter);
 
         // THEN
-        Assertions.assertEquals(onlyCharacterInCollection, result);
+        assertEquals(onlyCharacterInCollection, result);
     }
 
     @Test
@@ -60,9 +62,9 @@ class RandomCharacterPickerTest {
 
         // THEN
         Map<String, Long> charactersOccurrences = pickingResults.stream()
-                                                                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         for (Long occurrence : charactersOccurrences.values()) {
-            Assertions.assertEquals(expectedProbability, occurrence, 40);
+            assertEquals(expectedProbability, occurrence, 40);
 
         }
     }
@@ -77,7 +79,7 @@ class RandomCharacterPickerTest {
         String result = randomCharacterPicker.pick(singularCharacter);
 
         // THEN
-        Assertions.assertEquals(onlyCharacterInCollection, result);
+        assertEquals(onlyCharacterInCollection, result);
     }
 
     @Test
@@ -88,6 +90,7 @@ class RandomCharacterPickerTest {
         int edenWeight = 2;
         int cainWeight = 3;
         int weightSum = issacWeight + edenWeight + cainWeight;
+
 
         Map<String, Double> expectedProbabilities = Map.of(
                 "Isaac", (double) issacWeight / (double) weightSum,
@@ -108,9 +111,9 @@ class RandomCharacterPickerTest {
 
         // THEN
         Map<String, Long> charactersOccurrences = pickingResults.stream()
-                                                                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         for (Map.Entry<String, Long> occurrence : charactersOccurrences.entrySet()) {
-            Assertions.assertEquals(expectedProbabilities.get(occurrence.getKey()) * randomGenerations, occurrence.getValue(), 40);
+            assertEquals(expectedProbabilities.get(occurrence.getKey()) * randomGenerations, occurrence.getValue(), 40);
         }
     }
 }
