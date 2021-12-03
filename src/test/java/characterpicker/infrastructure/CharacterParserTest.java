@@ -8,7 +8,7 @@ class CharacterParserTest {
     @Test
     void shouldThrowExceptionWhenSpacesSeparatedByCommaIsProvided() {
         //GIVEN
-        String emptyInput = "   ,   ";
+        String emptyInput = "   ,   ; ";
 
         // WHEN && THEN
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -33,7 +33,7 @@ class CharacterParserTest {
     @Test
     void shouldThrowExceptionWhenNotNumberIsProvidedInThePlaceOfNumber() {
         // GIVEN
-        String characterWithInvalidWeight = "Isaac,Isaac";
+        String characterWithInvalidWeight = "Isaac,Isaac; ";
 
         // WHEN && THEN
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -63,6 +63,19 @@ class CharacterParserTest {
         // THEN
         Character expectedCharacter = new Character("", 1);
         Assertions.assertThat(characters)
+                .isEqualTo(expectedCharacter);
+    }
+    @Test
+    void shouldReturnTheSameCharacterWhenAnythingInCompletionIsProvided() {
+        // GIVEN
+        String singularCharacter = "Isaac,1";
+
+        // WHEN
+        Character character = CharacterParser.parseCharacter(singularCharacter);
+
+        // THEN
+        Character expectedCharacter = new Character("Isaac", 1);
+        Assertions.assertThat(character)
                 .isEqualTo(expectedCharacter);
     }
 }
