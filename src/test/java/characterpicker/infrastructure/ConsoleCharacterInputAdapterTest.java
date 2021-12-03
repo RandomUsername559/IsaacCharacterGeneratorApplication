@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class ConsoleCharacterInputAdapterTest {
+class ConsoleCharacterInputAdapterTest {
 
     @Test
     void shouldThrowExceptionWhenListWithSingleEmptyElementIsPassed() {

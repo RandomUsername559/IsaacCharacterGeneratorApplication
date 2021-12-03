@@ -65,4 +65,48 @@ class CharacterParserTest {
         Assertions.assertThat(characters)
                 .isEqualTo(expectedCharacter);
     }
+
+    @Test
+    void shouldReturnTheSameCharacterWhenAnythingInCompletionIsProvided() {
+        // GIVEN
+        String singularCharacter = "Isaac,1";
+
+        // WHEN
+        Character character = CharacterParser.parseCharacter(singularCharacter);
+
+        // THEN
+        Character expectedCharacter = new Character("Isaac", 1);
+        Assertions.assertThat(character)
+                .isEqualTo(expectedCharacter);
+    }
+
+    @Test
+    void shouldStripWeight() {
+        // GIVEN
+        String characterWeightWithSpaces = "Isaac, 1 ";
+
+        // WHEN
+        Character character = CharacterParser.parseCharacter(characterWeightWithSpaces);
+
+        // THEN
+        Character expectedCharacter = new Character("Isaac", 1);
+        Assertions.assertThat(character)
+                .isEqualTo(expectedCharacter);
+    }
+
+    @Test
+    void shouldParseCharacterWithCompletionMarks() {
+
+        //GIVEN
+        String characterWithCompletionMarks = "Isaac,1 --c isaac,hush,satan,???";
+
+        //WHEN
+        Character character = CharacterParser.parseCharacter(characterWithCompletionMarks);
+
+
+        //THEN
+        Character expectedCharacter = new Character("Isaac", 2);
+        Assertions.assertThat(character)
+                .isEqualTo(expectedCharacter);
+    }
 }
