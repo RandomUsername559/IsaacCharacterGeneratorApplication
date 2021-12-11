@@ -11,11 +11,19 @@ public class CompletionParser {
         throw new IllegalArgumentException("Utility Class");
     }
 
-    static Integer parseCompletion(String completion) {
-        List<String> bosses = Arrays.stream(completion.split(","))
-                .map(bossMark -> bossMark.toLowerCase(Locale.ROOT))
+    static List<String> parse(String completion) {
+        return Arrays.stream(completion.split(","))
+                .filter(CompletionParser::isEmpty)
+                .map(CompletionParser::unifyCasing)
+                .map(String::strip)
                 .collect(Collectors.toList());
-        return CompletionWeightCalculator.calculateCompletionWeight(bosses);
+    }
 
+    private static boolean isEmpty(String bossMark) {
+        return bossMark.length() > 0;
+    }
+
+    private static String unifyCasing(String bossMark) {
+        return bossMark.toLowerCase(Locale.ROOT);
     }
 }

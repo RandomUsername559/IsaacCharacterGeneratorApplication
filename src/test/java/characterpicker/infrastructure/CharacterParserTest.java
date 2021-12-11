@@ -8,7 +8,7 @@ class CharacterParserTest {
     @Test
     void shouldThrowExceptionWhenSpacesSeparatedByCommaIsProvided() {
         //GIVEN
-        String emptyInput = "   ,   ; ";
+        String emptyInput = "   ,   ";
 
         // WHEN && THEN
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -33,7 +33,7 @@ class CharacterParserTest {
     @Test
     void shouldThrowExceptionWhenNotNumberIsProvidedInThePlaceOfNumber() {
         // GIVEN
-        String characterWithInvalidWeight = "Isaac,Isaac; ";
+        String characterWithInvalidWeight = "Isaac,Isaac";
 
         // WHEN && THEN
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
@@ -65,6 +65,7 @@ class CharacterParserTest {
         Assertions.assertThat(characters)
                 .isEqualTo(expectedCharacter);
     }
+
     @Test
     void shouldReturnTheSameCharacterWhenAnythingInCompletionIsProvided() {
         // GIVEN
@@ -75,6 +76,36 @@ class CharacterParserTest {
 
         // THEN
         Character expectedCharacter = new Character("Isaac", 1);
+        Assertions.assertThat(character)
+                .isEqualTo(expectedCharacter);
+    }
+
+    @Test
+    void shouldStripWeight() {
+        // GIVEN
+        String characterWeightWithSpaces = "Isaac, 1 ";
+
+        // WHEN
+        Character character = CharacterParser.parseCharacter(characterWeightWithSpaces);
+
+        // THEN
+        Character expectedCharacter = new Character("Isaac", 1);
+        Assertions.assertThat(character)
+                .isEqualTo(expectedCharacter);
+    }
+
+    @Test
+    void shouldParseCharacterWithCompletionMarks() {
+
+        //GIVEN
+        String characterWithCompletionMarks = "Isaac,1 --c isaac,hush,satan,???";
+
+        //WHEN
+        Character character = CharacterParser.parseCharacter(characterWithCompletionMarks);
+
+
+        //THEN
+        Character expectedCharacter = new Character("Isaac", 2);
         Assertions.assertThat(character)
                 .isEqualTo(expectedCharacter);
     }

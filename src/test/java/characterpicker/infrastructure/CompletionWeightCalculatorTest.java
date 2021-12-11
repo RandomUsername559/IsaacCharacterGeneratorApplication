@@ -6,19 +6,33 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 
- class CompletionWeightCalculatorTest {
-     //TO DO test na wartość 0
+class CompletionWeightCalculatorTest {
+
+    @Test
+    void shouldDownscaleWeightIfSumOfValesIsLessThanHalf() {
+        //GIVEN
+        List<String> completionsThatSumUpToLessThanHalf = List.of(
+                "isaac",
+                "satan",
+                "boss rush",
+                "???"
+        );
+
+        //WHEN && THEN
+        Assertions.assertThat(CompletionWeightCalculator.calculate(completionsThatSumUpToLessThanHalf))
+                .isZero();
+    }
 
     @Test
     void shouldReturnAProperRoundedWeightFromOneElementList() {
 
         //GIVEN
-        List<String>singularCompletion= List.of(
+        List<String> singularCompletion = List.of(
                 "delirium"
         );
 
         //WHEN && THEN
-        Assertions.assertThat(CompletionWeightCalculator.calculateCompletionWeight(singularCompletion))
+        Assertions.assertThat(CompletionWeightCalculator.calculate(singularCompletion))
                 .isEqualTo(1);
     }
 
@@ -34,9 +48,10 @@ import java.util.List;
         );
 
         //WHEN && THEN
-        Assertions.assertThat(CompletionWeightCalculator.calculateCompletionWeight(listOfMixedInputs))
+        Assertions.assertThat(CompletionWeightCalculator.calculate(listOfMixedInputs))
                 .isEqualTo(1);
     }
+
     @Test
     void shouldReturnProperRoundedWeightFromMultipleMatchingElementList() {
 
@@ -51,7 +66,7 @@ import java.util.List;
         );
 
         //WHEN && THEN
-        Assertions.assertThat(CompletionWeightCalculator.calculateCompletionWeight(listOfMatchingInputs))
+        Assertions.assertThat(CompletionWeightCalculator.calculate(listOfMatchingInputs))
                 .isEqualTo(2);
     }
 
@@ -63,7 +78,7 @@ import java.util.List;
         );
 
         //WHEN && THEN
-        Assertions.assertThat(CompletionWeightCalculator.calculateCompletionWeight(emptyList))
+        Assertions.assertThat(CompletionWeightCalculator.calculate(emptyList))
                 .isZero();
     }
 
@@ -78,7 +93,7 @@ import java.util.List;
         );
 
         //WHEN && THEN
-        Assertions.assertThat(CompletionWeightCalculator.calculateCompletionWeight(listOfUnmatchingElements))
+        Assertions.assertThat(CompletionWeightCalculator.calculate(listOfUnmatchingElements))
                 .isZero();
     }
 

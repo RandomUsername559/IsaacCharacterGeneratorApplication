@@ -27,14 +27,14 @@ public class CompletionWeightCalculator {
         throw new IllegalStateException("Utility class");
     }
 
-    //TO DO
-    //change List name
-    static Integer calculateCompletionWeight(List<String> list) {
+    static Integer calculate(List<String> list) {
 
         double sumOfWeights = 0;
 
-
         for (String boss : list) {
+            if (!completionMarksWeights.containsKey(boss)) {
+                continue;
+            }
             sumOfWeights += completionMarksWeights.get(boss);
 
         }
