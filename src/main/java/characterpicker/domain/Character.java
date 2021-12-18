@@ -4,22 +4,19 @@ import java.util.Objects;
 
 public class Character {
     private final String name;
-    private final int weight;
-
+    private final Weight weight;
 
     public Character(String name) {
         this.name = name;
-        this.weight = 1;
-
+        this.weight = Weight.of(1);
     }
 
-    public Character(String name, int weight) {
+    public Character(String name, Weight weight) {
         this.name = name;
         this.weight = weight;
-
     }
 
-    public int getWeight() {
+    public Weight getWeight() {
         return weight;
     }
 
@@ -32,7 +29,7 @@ public class Character {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Character character = (Character) o;
-        return weight == character.weight && Objects.equals(name, character.name);
+        return Objects.equals(name, character.name) && Objects.equals(weight, character.weight);
     }
 
     @Override
