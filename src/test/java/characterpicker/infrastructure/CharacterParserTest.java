@@ -1,6 +1,7 @@
 package characterpicker.infrastructure;
 
 import characterpicker.domain.Character;
+import characterpicker.domain.Weight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,7 @@ class CharacterParserTest {
         Character character = CharacterParser.parseCharacter(singularCharacter);
 
         // THEN
-        Character expectedCharacter = new Character("Isaac", 1);
+        Character expectedCharacter = new Character("Isaac", Weight.of(1));
         Assertions.assertThat(character)
                 .isEqualTo(expectedCharacter);
     }
@@ -61,7 +62,7 @@ class CharacterParserTest {
         Character characters = CharacterParser.parseCharacter(characterWithEmptyName);
 
         // THEN
-        Character expectedCharacter = new Character("", 1);
+        Character expectedCharacter = new Character("", Weight.of(1));
         Assertions.assertThat(characters)
                 .isEqualTo(expectedCharacter);
     }
@@ -75,7 +76,7 @@ class CharacterParserTest {
         Character character = CharacterParser.parseCharacter(singularCharacter);
 
         // THEN
-        Character expectedCharacter = new Character("Isaac", 1);
+        Character expectedCharacter = new Character("Isaac", Weight.of(1));
         Assertions.assertThat(character)
                 .isEqualTo(expectedCharacter);
     }
@@ -89,7 +90,7 @@ class CharacterParserTest {
         Character character = CharacterParser.parseCharacter(characterWeightWithSpaces);
 
         // THEN
-        Character expectedCharacter = new Character("Isaac", 1);
+        Character expectedCharacter = new Character("Isaac", Weight.of(1));
         Assertions.assertThat(character)
                 .isEqualTo(expectedCharacter);
     }
@@ -105,8 +106,9 @@ class CharacterParserTest {
 
 
         //THEN
-        Character expectedCharacter = new Character("Isaac", 2);
+        Character expectedCharacter = new Character("Isaac", Weight.of(2));
         Assertions.assertThat(character)
                 .isEqualTo(expectedCharacter);
     }
+
 }

@@ -2,6 +2,7 @@ package characterpicker.infrastructure;
 
 import characterpicker.TestReader;
 import characterpicker.domain.Character;
+import characterpicker.domain.Weight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,7 @@ class ConsoleCharacterInputAdapterTest {
 
         // THEN
         List<Character> expectedCharacter = List.of(
-                new Character("Isaac", 1)
+                new Character("Isaac", Weight.of(1))
         );
         Assertions.assertThat(characters)
                 .isEqualTo(expectedCharacter);
@@ -56,7 +57,7 @@ class ConsoleCharacterInputAdapterTest {
 
         // THEN
         List<Character> expectedCharacter = List.of(
-                new Character("Isaac", 1)
+                new Character("Isaac", Weight.of(1))
         );
         Assertions.assertThat(characters)
                 .isEqualTo(expectedCharacter);
@@ -78,9 +79,9 @@ class ConsoleCharacterInputAdapterTest {
 
         //THEN
         List<Character> expectedCharacters = List.of(
-                new Character("Isaac", 1),
-                new Character("Magdalene", 2),
-                new Character("Jacob", 1)
+                new Character("Isaac", Weight.of(1)),
+                new Character("Magdalene", Weight.of(2)),
+                new Character("Jacob", Weight.of(1))
         );
         Assertions.assertThat(characters)
                 .isEqualTo(expectedCharacters);

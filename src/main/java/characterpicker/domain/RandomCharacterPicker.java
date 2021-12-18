@@ -23,8 +23,8 @@ public class RandomCharacterPicker {
     private List<String> fillCharacterPool(List<Character> issacCharacters) {
         List<String> characterPool = new ArrayList<>();
         for (Character issacCharacter : issacCharacters) {
-            int weight = issacCharacter.getWeight();
-            for (int i = 0; i <weight ; i++) {
+            Weight weight = issacCharacter.getWeight();
+            for (int i = 0; i < weight.getAsInt(); i++) {
                 characterPool.add(issacCharacter.getName());
             }
         }

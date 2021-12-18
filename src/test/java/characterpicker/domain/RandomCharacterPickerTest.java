@@ -73,7 +73,7 @@ class RandomCharacterPickerTest {
     void shouldReturnTheSameCharacterWithWeightThatIsInList() {
         // GIVEN
         String onlyCharacterInCollection = "Isaac";
-        List<Character> singularCharacter = List.of(new Character(onlyCharacterInCollection, 2));
+        List<Character> singularCharacter = List.of(new Character(onlyCharacterInCollection, Weight.of(2)));
 
         // WHEN
         String result = randomCharacterPicker.pick(singularCharacter);
@@ -86,19 +86,19 @@ class RandomCharacterPickerTest {
     void shouldReturnRandomWeightedCharacterForMultipleElementList() {
         // GIVEN
         int randomGenerations = 1000;
-        int issacWeight = 1;
-        int edenWeight = 2;
-        int cainWeight = 3;
-        int weightSum = issacWeight + edenWeight + cainWeight;
+        Weight isaacWeight = Weight.of(1);
+        Weight edenWeight = Weight.of(2);
+        Weight cainWeight = Weight.of(3);
+        Weight weightSum = isaacWeight.plus(edenWeight).plus(cainWeight);
 
 
         Map<String, Double> expectedProbabilities = Map.of(
-                "Isaac", (double) issacWeight / (double) weightSum,
-                "Eden", (double) edenWeight / (double) weightSum,
-                "Cain", (double) cainWeight / (double) weightSum
+                "Isaac", (double) isaacWeight.getAsInt() / (double) weightSum.getAsInt(),
+                "Eden", (double) edenWeight.getAsInt() / (double) weightSum.getAsInt(),
+                "Cain", (double) cainWeight.getAsInt() / (double) weightSum.getAsInt()
         );
         List<Character> characterPool = List.of(
-                new Character("Isaac", issacWeight),
+                new Character("Isaac", isaacWeight),
                 new Character("Eden", edenWeight),
                 new Character("Cain", cainWeight)
         );

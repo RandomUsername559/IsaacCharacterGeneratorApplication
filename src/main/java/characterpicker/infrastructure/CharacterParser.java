@@ -1,6 +1,7 @@
 package characterpicker.infrastructure;
 
 import characterpicker.domain.Character;
+import characterpicker.domain.Weight;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class CharacterParser {
         String unparsedWeight = characterProperties[WEIGHT_INDEX].strip();
         checksIfWeightIsNumeric(unparsedWeight);
 
-        int totalWeight = Integer.parseInt(unparsedWeight) + completionWeight;
+        Weight totalWeight = Weight.of(Integer.parseInt(unparsedWeight) + completionWeight);
         return new Character(name, totalWeight);
     }
 
