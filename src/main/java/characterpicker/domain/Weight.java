@@ -3,6 +3,8 @@ package characterpicker.domain;
 import java.util.Objects;
 
 public class Weight {
+    private static final int WEIGHT_MIN_VALUE = 0;
+    private static final int WEIGHT_MAX_VALUE = 10_000;
     private final int value;
 
     private Weight(int value) {
@@ -10,7 +12,7 @@ public class Weight {
     }
 
     public static Weight of(int value) {
-        if (value <= 0 || value >= 10_000) {
+        if (value <= WEIGHT_MIN_VALUE || value >= WEIGHT_MAX_VALUE) {
             throw new IllegalArgumentException("Weight out of boundaries");
         }
         return new Weight(value);

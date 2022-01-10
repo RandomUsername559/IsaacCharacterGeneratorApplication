@@ -21,7 +21,7 @@ class ConsoleCharacterInputAdapterTest {
         // WHEN && THEN
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(repository::getCharacters)
-                .withMessage("At least one characterPicker.domain.Character has to be provided");
+                .withMessage("At least one character has to be provided");
     }
 
     @Test

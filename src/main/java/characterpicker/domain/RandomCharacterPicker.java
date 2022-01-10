@@ -1,15 +1,21 @@
 package characterpicker.domain;
 
-import java.util.ArrayList;
+import com.google.common.collect.Range;
+import com.google.common.collect.RangeMap;
+import com.google.common.collect.TreeRangeMap;
+
 import java.util.List;
 import java.util.Random;
 
+
 public class RandomCharacterPicker {
+
     private final Random random = new Random();
 
+    @SuppressWarnings("UnstableApiUsage")
     public String pick(List<Character> issacCharacters) {
         validateEmptyOrNull(issacCharacters);
-        List<String> characterPool = fillCharacterPool(issacCharacters);
+        RangeMap<Integer, String> characterPool = fillCharacterPool(issacCharacters);
         return pickRandomCharacter(characterPool);
 
     }
@@ -20,20 +26,35 @@ public class RandomCharacterPicker {
         }
     }
 
-    private List<String> fillCharacterPool(List<Character> issacCharacters) {
-        List<String> characterPool = new ArrayList<>();
+    @SuppressWarnings("UnstableApiUsage")
+    private RangeMap<Integer, String> fillCharacterPool(List<Character> issacCharacters) {
+
+        RangeMap<Integer, String> characterPool = TreeRangeMap.create();
+
+        int rangeStart = 1;
+
         for (Character issacCharacter : issacCharacters) {
-            Weight weight = issacCharacter.getWeight();
-            for (int i = 0; i < weight.getAsInt(); i++) {
-                characterPool.add(issacCharacter.getName());
-            }
+            int rangeEnd = issacCharacter.getWeight().getAsInt() + rangeStart;
+
+            characterPool.put(Range.closed(rangeStart, rangeEnd - 1), issacCharacter.getName());
+
+            rangeStart = rangeEnd;
         }
         return characterPool;
     }
 
-    private String pickRandomCharacter(List<String> characterPool) {
-        int randomInt = random.nextInt(characterPool.size());
-        return characterPool.get(randomInt);
+    @SuppressWarnings("UnstableApiUsage")
+    private String pickRandomCharacter(RangeMap<Integer, String> characterPool) {
+        Integer maxWeight = characterPool.asMapOfRanges()
+                .keySet()
+                .stream()
+                .map(Range::upperEndpoint)
+                .max(Integer::compare)
+                .orElseThrow(() -> new RuntimeException("Impossible to have empty range map"));
+
+        int rolledNumber = random.nextInt(maxWeight) + 1;
+
+        return characterPool.get(rolledNumber);
     }
 
 }

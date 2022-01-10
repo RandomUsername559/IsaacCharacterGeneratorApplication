@@ -21,6 +21,7 @@ public class CharacterParser {
     }
 
     static Character parseCharacter(String unparsedCharacterConfiguration) {
+
         String[] configurationGroups = unparsedCharacterConfiguration.split(COMPLETION_MARK_SEPARATOR);
         String unparsedCharacter = configurationGroups[CHARACTER_INDEX];
 
