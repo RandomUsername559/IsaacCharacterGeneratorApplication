@@ -1,4 +1,4 @@
-package characterpicker.infrastructure;
+package characterpicker.core;
 
 
 import java.util.Arrays;

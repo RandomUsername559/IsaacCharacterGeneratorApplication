@@ -1,4 +1,4 @@
-package characterpicker.domain;
+package characterpicker.core;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.junit.jupiter.api.Assertions;

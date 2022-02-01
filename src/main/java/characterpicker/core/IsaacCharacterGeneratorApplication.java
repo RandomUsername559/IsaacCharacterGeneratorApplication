@@ -1,14 +1,13 @@
-package characterpicker;
+package characterpicker.core;
 
-import characterpicker.domain.Character;
-import characterpicker.domain.RandomCharacterPicker;
-import characterpicker.infrastructure.ConsoleCharacterInputAdapter;
-import characterpicker.infrastructure.ConsoleReader;
+import characterpicker.console.ConsoleCharacterInputAdapter;
+import characterpicker.console.ConsoleReader;
 
 import java.util.List;
 
 public class IsaacCharacterGeneratorApplication {
     public static void main(String[] args) {
+
         ConsoleCharacterInputAdapter characterRepository = new ConsoleCharacterInputAdapter(new ConsoleReader());
         List<Character> issacCharacters = characterRepository.getCharacters();
         RandomCharacterPicker randomCharacterPicker = new RandomCharacterPicker();
@@ -16,8 +15,6 @@ public class IsaacCharacterGeneratorApplication {
         System.out.println(character);
 
     }
-
-
 
 
 }

@@ -1,4 +1,4 @@
-package characterpicker.domain;
+package characterpicker.core;
 
 import java.util.Objects;
 
