@@ -1,4 +1,4 @@
-package characterpicker.domain;
+package characterpicker.core;
 
 import com.google.common.collect.Range;
 import com.google.common.collect.RangeMap;
@@ -17,7 +17,6 @@ public class RandomCharacterPicker {
         validateEmptyOrNull(issacCharacters);
         RangeMap<Integer, String> characterPool = fillCharacterPool(issacCharacters);
         return pickRandomCharacter(characterPool);
-
     }
 
     private void validateEmptyOrNull(List<Character> issacCharacters) {

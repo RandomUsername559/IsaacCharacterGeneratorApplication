@@ -1,7 +1,5 @@
-package characterpicker.infrastructure;
+package characterpicker.core;
 
-import characterpicker.domain.Character;
-import characterpicker.domain.Weight;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
@@ -20,7 +18,7 @@ public class CharacterParser {
         throw new IllegalStateException("Utility class");
     }
 
-    static Character parseCharacter(String unparsedCharacterConfiguration) {
+    public static Character parseCharacter(String unparsedCharacterConfiguration) {
 
         String[] configurationGroups = unparsedCharacterConfiguration.split(COMPLETION_MARK_SEPARATOR);
         String unparsedCharacter = configurationGroups[CHARACTER_INDEX];

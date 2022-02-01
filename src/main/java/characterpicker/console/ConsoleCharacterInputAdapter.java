@@ -1,7 +1,7 @@
-package characterpicker.infrastructure;
+package characterpicker.console;
 
-import characterpicker.Reader;
-import characterpicker.domain.Character;
+import characterpicker.core.Character;
+import characterpicker.core.CharacterParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class ConsoleCharacterInputAdapter {
 
         List<Character> characters = new ArrayList<>();
 
-        reader.write("Type characters names from which you want to roll:");
+        reader.write("Type character's names from which you want to roll:");
         while (true) {
 
             String unparsedCharacter = reader.read();

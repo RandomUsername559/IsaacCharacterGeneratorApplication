@@ -1,6 +1,4 @@
-package characterpicker.infrastructure;
-
-import characterpicker.Reader;
+package characterpicker.console;
 
 import java.util.Scanner;
 
