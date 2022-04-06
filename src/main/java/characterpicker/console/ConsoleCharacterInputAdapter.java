@@ -1,7 +1,7 @@
-package characterpicker.infrastructure;
+package characterpicker.console;
 
-import characterpicker.Reader;
-import characterpicker.domain.Character;
+import characterpicker.core.Character;
+import characterpicker.core.CharacterParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class ConsoleCharacterInputAdapter {
 
         List<Character> characters = new ArrayList<>();
 
-        reader.write("Type characterPicker.domain.Character names from which you want to roll:");
+        reader.write("Type character's names from which you want to roll:");
         while (true) {
 
             String unparsedCharacter = reader.read();
@@ -32,7 +32,7 @@ public class ConsoleCharacterInputAdapter {
 
         reader.write(characters.toString());
         if (characters.isEmpty()) {
-            throw new IllegalArgumentException("At least one characterPicker.domain.Character has to be provided");
+            throw new IllegalArgumentException("At least one character has to be provided");
         }
         return characters;
     }

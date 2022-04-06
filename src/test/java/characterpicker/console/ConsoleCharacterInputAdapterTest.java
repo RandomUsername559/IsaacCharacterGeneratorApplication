@@ -1,8 +1,7 @@
-package characterpicker.infrastructure;
+package characterpicker.console;
 
-import characterpicker.TestReader;
-import characterpicker.domain.Character;
-import characterpicker.domain.Weight;
+import characterpicker.core.Character;
+import characterpicker.core.Weight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +20,7 @@ class ConsoleCharacterInputAdapterTest {
         // WHEN && THEN
         Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(repository::getCharacters)
-                .withMessage("At least one characterPicker.domain.Character has to be provided");
+                .withMessage("At least one character has to be provided");
     }
 
     @Test

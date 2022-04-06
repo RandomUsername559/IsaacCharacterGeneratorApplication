@@ -1,12 +1,17 @@
-package characterpicker.domain;
+package characterpicker.core;
 
+import org.apache.commons.lang.time.StopWatch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RandomCharacterPickerTest {
@@ -115,5 +120,28 @@ class RandomCharacterPickerTest {
         for (Map.Entry<String, Long> occurrence : charactersOccurrences.entrySet()) {
             assertEquals(expectedProbabilities.get(occurrence.getKey()) * randomGenerations, occurrence.getValue(), 40);
         }
+    }
+
+    @Test
+    void shouldCheckProgramPerformanceDuringHugeTraffic() {
+        //GIVEN
+        StopWatch watch = new StopWatch();
+        int randomGenerations = 1_000_000;
+        List<Character> characterPool = new ArrayList<>();
+
+        String name = "Character";
+        for (int i = 0; i < randomGenerations; i++) {
+            characterPool.add(new Character(name + i, Weight.of(999)));
+        }
+
+        //WHEN
+        watch.start();
+        String result = randomCharacterPicker.pick(characterPool);
+        System.out.println(result);
+        watch.stop();
+
+        //THEN
+        System.out.println("Time passed " + watch.getTime() + "ms");
+        assertThat(watch.getTime()).isLessThanOrEqualTo(3_000);
     }
 }

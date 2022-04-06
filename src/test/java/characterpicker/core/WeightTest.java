@@ -1,4 +1,4 @@
-package characterpicker.domain;
+package characterpicker.core;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

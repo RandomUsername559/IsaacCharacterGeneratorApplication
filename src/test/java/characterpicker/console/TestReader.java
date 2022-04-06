@@ -1,4 +1,4 @@
-package characterpicker;
+package characterpicker.console;
 
 import java.util.List;
 

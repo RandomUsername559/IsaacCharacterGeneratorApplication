@@ -1,7 +1,5 @@
-package characterpicker.infrastructure;
+package characterpicker.core;
 
-import characterpicker.domain.Character;
-import characterpicker.domain.Weight;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
