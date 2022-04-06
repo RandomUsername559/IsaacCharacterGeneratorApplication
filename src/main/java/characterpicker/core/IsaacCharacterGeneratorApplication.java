@@ -2,7 +2,6 @@ package characterpicker.core;
 
 import characterpicker.console.ConsoleCharacterInputAdapter;
 import characterpicker.console.ConsoleReader;
-
 import java.util.List;
 
 public class IsaacCharacterGeneratorApplication {
