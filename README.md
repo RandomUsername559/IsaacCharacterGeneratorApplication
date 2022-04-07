@@ -16,7 +16,7 @@ Integration Tests written in TDD approach to check proper functionality, perform
 ## Usage
 ![](https://github.com/Rybaczek/isaac-character-generator-application/blob/master/Animation.gif)
 
-The user is typing the character's name, the weight (after comma) and if it has any, defeated bosses (separated with commas) after --c .     
+The user is typing the character's name, the weight (after a comma) and if it has any, defeated bosses (separated with commas) after --c .     
 Then when are characters are added to the pool program is drawing one of them based on provided data and writing the result.
 ## Roadmap
 - [ ] Add duplicate protection option
