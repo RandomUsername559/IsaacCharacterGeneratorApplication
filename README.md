@@ -1,6 +1,6 @@
-# Isaac character generator application
+# Isaac character generator 
 ## About The Project
-This project is a random generator customized to match "The Binding of Isaac" game's names and usage.
+This project is a random generator customized to match "The Binding of Isaac" domain.
 The generator additionally has a weighting system that can affect the probability of drawing a specific result.  
 What's more, providing specified data can automatically increase a character's weight
 
@@ -11,13 +11,13 @@ Integration Tests written in TDD approach to check proper functionality, perform
 * Java 11
 * JUnit 5
 * AssertJ
-* Google Gueva
+* Google Guava
 
 ## Usage
 ![](https://github.com/Rybaczek/isaac-character-generator-application/blob/master/Animation.gif)
 
 The user is typing the character's name, the weight (after a comma) and if it has any, defeated bosses (separated with commas) after --c .     
-Then when are characters are added to the pool program is drawing one of them based on provided data and writing the result.
+After characters are added to the pool program is picking one of them based on provided data and outputting the result.
 ## Roadmap
 - [ ] Add duplicate protection option
 - [ ] Add option to collect data for generation from file
